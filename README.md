@@ -35,6 +35,7 @@ Refresh the page to see that your events persist.
 
 
 **This daily planner is perfect for anyone who needs a little help organizing their day!**
+![scheduler screenshot](https://github.com/Mohamedamin141/Work-Day-Scheduler/assets/138842903/026c1c2c-a420-43e9-9f9e-6b89a1bb6410)
 
 ## links 
 https://mohamedamin141.github.io/Work-Day-Scheduler/
