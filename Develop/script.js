@@ -1,23 +1,80 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
-});
+
+var currentDay= dayjs();
+var saveBtn =  $(".saveBtn");
+var eghtAm= $("#hour-8");
+ var nineAm= $("#hour-9");
+ var tenAm= $("#hour-10");
+ var evlAm= $("#hour-11");
+var twPm= $("#hour-12");
+ var threPm= $("#hour-13");
+ var fourtPm= $("#hour-14");
+ var fivtPm= $("#hour-15");
+ var sixtPm= $("#hour-16");
+ var sevtPm= $("#hour-17");
+ 
+// it shows the current day
+$("#currentDay").text(currentDay.format("dddd DD, MMMM  "));
+
+
+$(function  () {
+  
+  // document.ready waits until page is loaded 
+  $(document).ready(function() {
+  
+    saveBtn.each(function(){
+      let timeBlock = $(this).parent();
+      let id = timeBlock.attr("id");
+      
+      // Retrieve saved data from localStorage and set it as the value of the description
+      let savedDescription = localStorage.getItem(id);
+      if (savedDescription) {
+        timeBlock.find('.description').val(savedDescription);
+      }
+  
+      $(this).on("click", function(){
+        let inputDescription = timeBlock.find('.description').val();
+        localStorage.setItem(id , inputDescription);
+      });
+    });
+  });
+  
+
+  })
+
+   
+
+
+  var currentHour = dayjs().hour();
+
+
+
+ // updates background color based on time of day!.
+
+  function updateTime(time,element){
+    
+    if (currentHour === time){
+      element.removeClass("past present future").addClass('present');
+    }
+    else if (currentHour > time){
+      element.removeClass("past present future").addClass("past");
+    }
+    else if (currentHour < time){
+      element.removeClass("past present future").addClass("future");
+      console.log(currentHour)
+    }
+
+
+  }
+    // calls in each  time function.  
+  updateTime(9,nineAm);
+  updateTime(10,tenAm);
+  updateTime(11,evlAm);
+  updateTime(12,twPm);
+
+  updateTime(13,threPm);
+  updateTime(14,fourtPm);
+  updateTime(15,fivtPm);
+  updateTime(16,sixtPm);
+  updateTime(17,sevtPm);
+
+

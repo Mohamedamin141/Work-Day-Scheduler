@@ -57,3 +57,9 @@ textarea {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
+
+.lead{
+  font-size: 1.9em;
+  font-weight: bolder;
+  text-align: center;
+}
